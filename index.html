@@ -1,0 +1,29 @@
+<html>
+<!-- Your platform (jquery) scripts. -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    
+<script src="https://surveyjs.azureedge.net/1.0.52/survey.jquery.min.js"></script>
+</head>
+<!--<body onkeydown="onkeyDowEvent(event)"> -->
+<body>
+  <div id="surveyContainer"></div>
+</body>
+<script type="text/javascript">
+Survey.Survey.cssType = "bootstrap";
+
+var surveyJSON = {locale:"he",pages:[{name:"page1",elements:[{type:"imagepicker",name:"question1",title:"מועצה איזורית גזר. למי תצביע?",choices:[{value:"1",text:"פטר וייס",imageLink:"/api/MySurveys/files?name=9406d15c-6454-467f-b530-e97e114a1200"},{value:"2",text:"רותם ידלין",imageLink:"/api/MySurveys/files?name=66d9a00a-f8ef-40f1-85ad-f748de0d697c"},{value:"3",text:"שוקי רגב",imageLink:"/api/MySurveys/files?name=660dd60b-ce53-42e0-807c-e508d3ffdef9"},{value:"4",text:"אורן אבלה",imageLink:"/api/MySurveys/files?name=af157c24-cb2f-49b1-a1b5-d28063f3eac4"}],imageFit:"cover",showLabel:true},{type:"radiogroup",name:"question2",title:{he:"למי תצביע?"},enableIf:"{question1} empty",choices:[{value:"item1",text:"מתלבט"},{value:"item2",text:"לא מצביע"},{value:"item3",text:"לא רוצה לענות"}]}]}]}
+
+function sendDataToServer(survey) {
+    survey.sendResult('900a9262-404b-402b-a024-74929cf67614');
+}
+
+var survey = new Survey.Model(surveyJSON);
+$("#surveyContainer").Survey({
+    model: survey,
+    onComplete: sendDataToServer
+});
+</script>
+</html>
